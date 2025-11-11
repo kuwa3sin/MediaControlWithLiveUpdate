@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Live Media Control</string>
+    <string name="media_monitor_service_label">Live Media Control Monitor</string>
+    <string name="notification_channel_name">Media Live Update</string>
+    <string name="notification_channel_description">Displays currently playing media in status bar chip</string>
+    <string name="permission_notification_listener_title">Notification access required</string>
+    <string name="permission_notification_listener_message">Allow notification access so we can monitor media info from other apps.</string>
+    <string name="permission_promoted_notifications_title">Live Update permission required</string>
+    <string name="permission_promoted_notifications_message">Allow promoted notifications so we can show the status bar chip.</string>
+    <string name="permission_post_notifications_title">Notification permission required</string>
+    <string name="permission_post_notifications_message">Allow notifications so Live Update chips can appear.</string>
+    <string name="open_settings">⚙️ Open settings</string>
+    <string name="request_permission">✅ Grant permission</string>
+    <string name="permissions_granted">All required permissions granted</string>
+    <string name="service_running">Live Media Control is running</string>
+    <string name="status_playing">Playing</string>
+    <string name="settings_title">Live Media Control</string>
+    <string name="settings_subtitle">Configure how the Live Update chip behaves</string>
+    <string name="settings_description">Grant the required permissions and customise the status bar indicators for your now playing experience.</string>
+    <string name="permission_section_title">Permissions</string>
+    <string name="customization_section_title">Chip appearance</string>
+    <string name="list_item_selected">Selected</string>
+    <string name="chip_indicator_mode_title">Status bar icon</string>
+    <string name="chip_indicator_mode_description">Choose which icon the status bar chip shows.</string>
+    <string name="chip_indicator_option_app_icon">App notification icon</string>
+    <string name="chip_indicator_option_playback_icon">Playback status icon</string>
+    <string name="notification_action_previous">⏮️ Previous</string>
+    <string name="notification_action_play">▶️ Play</string>
+    <string name="notification_action_pause">⏸️ Pause</string>
+    <string name="notification_action_skip">⏭️ Next</string>
+</resources>

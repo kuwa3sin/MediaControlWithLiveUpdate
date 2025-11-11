@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">ライブメディアコントロール</string>
+    <string name="media_monitor_service_label">Live Media Control Monitor</string>
+    <string name="notification_channel_name">Media Live Update</string>
+    <string name="notification_channel_description">ステータスバーのチップに再生中のメディアを表示します</string>
+    <string name="permission_notification_listener_title">通知アクセス権限が必要です</string>
+    <string name="permission_notification_listener_message">他のアプリのメディア情報を監視するため、通知アクセス権限を許可してください。</string>
+    <string name="permission_promoted_notifications_title">Live Update権限が必要です</string>
+    <string name="permission_promoted_notifications_message">ステータスバーチップに表示するため、プロモート通知権限を許可してください。</string>
+    <string name="permission_post_notifications_title">通知送信権限が必要です</string>
+    <string name="permission_post_notifications_message">Live Updateチップを表示するには、通知送信を許可してください。</string>
+    <string name="open_settings">⚙️ 設定を開く</string>
+    <string name="request_permission">✅ 権限を許可する</string>
+    <string name="permissions_granted">すべての権限が許可されています</string>
+    <string name="service_running">Live Media Controlが実行中です</string>
+    <string name="status_playing">再生中</string>
+    <string name="settings_title">Live Media Control</string>
+    <string name="settings_subtitle">Live Updateチップの挙動を設定します</string>
+    <string name="settings_description">必要な権限を付与し、再生中ステータスバー表示の見た目をカスタマイズしてください。</string>
+    <string name="permission_section_title">権限</string>
+    <string name="customization_section_title">チップの見た目</string>
+    <string name="list_item_selected">選択中</string>
+    <string name="chip_indicator_mode_title">ステータスバーのアイコン</string>
+    <string name="chip_indicator_mode_description">ステータスバーチップに表示するアイコンを選択してください。</string>
+    <string name="chip_indicator_option_app_icon">アプリの通知アイコン</string>
+    <string name="chip_indicator_option_playback_icon">再生状態アイコン</string>
+    <string name="notification_action_previous">⏮️ 前の曲</string>
+    <string name="notification_action_play">▶️ 再生</string>
+    <string name="notification_action_pause">⏸️ 一時停止</string>
+    <string name="notification_action_skip">⏭️ 次の曲</string>
+</resources>
