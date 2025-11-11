@@ -4,7 +4,31 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+val releaseKeystorePath = project.findProperty("releaseKeystorePath") as String?
+val releaseKeystorePassword = project.findProperty("releaseKeystorePassword") as String?
+val releaseKeyAlias = project.findProperty("releaseKeyAlias") as String?
+val releaseKeyPassword = project.findProperty("releaseKeyPassword") as String?
+val isReleaseSigningConfigured = listOf(
+    releaseKeystorePath,
+    releaseKeystorePassword,
+    releaseKeyAlias,
+    releaseKeyPassword
+).all { !it.isNullOrBlank() }
+
 android {
+    signingConfigs {
+        create("release") {
+            enableV1Signing = true
+            enableV2Signing = true
+            enableV3Signing = true
+            enableV4Signing = true
+            releaseKeystorePath?.let { storeFile = file(it) }
+            storePassword = releaseKeystorePassword
+            keyAlias = releaseKeyAlias
+            keyPassword = releaseKeyPassword
+        }
+    }
+
     namespace = "com.kuwa3sin.mediactlwithliveupdate"
     compileSdk {
         version = release(36)
@@ -27,6 +51,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            if (isReleaseSigningConfigured) {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
     }
     compileOptions {
