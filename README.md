@@ -1,19 +1,25 @@
 # MediaCtlWithLiveUpdate
 
-Jetpack Compose と Material 3 Expressive を用いたメディア制御サンプルアプリです。ライブ更新される通知チップと、権限・カスタマイズ設定をタブで切り替えられる設定画面を備えています。
+Jetpack Compose と Android 16 の Live Update API を活用したメディア制御サンプルアプリです。ライブ更新される通知チップと、権限・カスタマイズ設定をタブで切り替えられる設定画面を備えています。
+
+> この README を含むドキュメントは、ほぼ全文を GitHub Copilot の支援を受けて記述しています。
 
 ## 主な機能
 
 - メディア再生状態に応じて更新されるライブ通知 UI
 - 権限要求パネルとカスタマイズ設定をタブで切り替え可能な設定画面
-- Material 3 Expressive テーマに基づくビジュアルデザイン
 - シェアドプリファレンスを用いたチップ表示モードの保存
 
-## 開発環境
+## 動作要件
 
+- Android 16 (API 35) 以降の実機またはエミュレータ（Live Update API 対応が前提）
 - Android Studio Iguana 以降を推奨
 - Kotlin 1.9 以上
 - Gradle 8 以上（プロジェクト同梱の Gradle Wrapper を使用）
+
+## 開発環境
+
+上記の動作要件を満たした環境での開発を想定しています。
 
 ## ビルド & 実行
 
@@ -35,6 +41,14 @@ Compose コンポーネントのスナップショットやユニットテスト
 ./gradlew testDebugUnitTest
 ```
 
+## アセット
+
+- 機能紹介用のスクリーンショットや GIF は `docs/media/` 配下に配置しています。
+
+## リリース
+
+- GitHub Releases に APK (`MediaCtlWithLiveUpdate-v*.apk`) を配置し、最新版を配布します。
+
 ## ライセンス
 
-このプロジェクトのライセンスは未設定です。利用条件を明確にする場合は `LICENSE` ファイルを追加してください。
+このプロジェクトは [MIT License](LICENSE) の下で公開されています。
