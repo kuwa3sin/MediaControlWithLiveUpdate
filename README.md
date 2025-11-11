@@ -1,6 +1,7 @@
-# MediaCtlWithLiveUpdate
+# ライブメディアコントロール / Live Media Control
 
-Jetpack Compose と Android 16 の Live Update API を活用したメディア制御サンプルアプリです。ライブ更新される通知チップと、権限・カスタマイズ設定をタブで切り替えられる設定画面を備えています。
+Jetpack Compose と Android 16 の Live Update API を活用したメディア制御サンプルアプリです。
+メディアの状態に合わせて更新されステータスバーに常駐する通知チップと、権限・カスタマイズ設定をタブで切り替えられる設定画面を備えています。
 
 > この README を含むドキュメントは、ほぼ全文を GitHub Copilot の支援を受けて記述しています。
 
@@ -9,6 +10,7 @@ Jetpack Compose と Android 16 の Live Update API を活用したメディア�
 - メディア再生状態に応じて更新されるライブ通知 UI
 - 権限要求パネルとカスタマイズ設定をタブで切り替え可能な設定画面
 - シェアドプリファレンスを用いたチップ表示モードの保存
+- 日本語/英語対応
 
 ## 動作要件
 
@@ -19,6 +21,7 @@ Jetpack Compose と Android 16 の Live Update API を活用したメディア�
 
 ## apk
 https://github.com/kuwa3sin/MediaControlWithLiveUpdate/releases/tag/apk
+Google Pixel 10 Pro (Android 16 QPR2)での動作は確認済み
 
 ## ライセンス
 
