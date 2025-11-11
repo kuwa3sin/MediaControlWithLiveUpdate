@@ -24,6 +24,15 @@
     <string name="chip_indicator_mode_description">ステータスバーチップに表示するアイコンを選択してください。</string>
     <string name="chip_indicator_option_app_icon">アプリの通知アイコン</string>
     <string name="chip_indicator_option_playback_icon">再生状態アイコン</string>
+    <string name="live_update_toggle_title">Live Update通知</string>
+    <string name="live_update_toggle_description">ステータスバーチップの更新に使用するプロモート通知の表示／非表示を切り替えます。</string>
+    <string name="chip_text_mode_title">チップのテキスト</string>
+    <string name="chip_text_mode_description">ステータスバーチップ内に表示するテキストを選択してください。</string>
+    <string name="chip_text_option_none">テキストなし</string>
+    <string name="chip_text_option_app_name">アプリ名</string>
+    <string name="chip_text_option_playback_state">再生／一時停止</string>
+    <string name="chip_text_playing">再生中</string>
+    <string name="chip_text_paused">一時停止</string>
     <string name="notification_action_previous">⏮️ 前の曲</string>
     <string name="notification_action_play">▶️ 再生</string>
     <string name="notification_action_pause">⏸️ 一時停止</string>

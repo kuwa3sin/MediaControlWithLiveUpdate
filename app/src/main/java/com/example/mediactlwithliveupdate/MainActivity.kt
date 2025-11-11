@@ -31,6 +31,7 @@ import androidx.core.content.ContextCompat
 import com.kuwa3sin.mediactlwithliveupdate.ui.theme.MediaCtlWithLiveUpdateTheme
 import com.kuwa3sin.mediactlwithliveupdate.config.ChipIndicatorMode
 import com.kuwa3sin.mediactlwithliveupdate.config.ChipIndicatorPreferences
+import com.kuwa3sin.mediactlwithliveupdate.config.ChipTextMode
 import com.kuwa3sin.mediactlwithliveupdate.ui.component.ExpressiveSurface
 import com.kuwa3sin.mediactlwithliveupdate.ui.component.ElevatedListItem
 import com.kuwa3sin.mediactlwithliveupdate.ui.component.ExpressiveChip
@@ -87,12 +88,20 @@ class MainActivity : ComponentActivity() {
             mutableStateOf(isNotificationPermissionGranted())
         }
         var chipIndicatorMode by remember {
-            mutableStateOf(ChipIndicatorPreferences.read(sharedPrefs))
+            mutableStateOf(ChipIndicatorPreferences.readIndicatorMode(sharedPrefs))
+        }
+        var chipTextMode by remember {
+            mutableStateOf(ChipIndicatorPreferences.readTextMode(sharedPrefs))
+        }
+        var liveUpdateEnabled by remember {
+            mutableStateOf(ChipIndicatorPreferences.isLiveUpdateEnabled(sharedPrefs))
         }
 
         DisposableEffect(sharedPrefs) {
-            val listener = ChipIndicatorPreferences.observe(sharedPrefs) { mode ->
-                chipIndicatorMode = mode
+            val listener = ChipIndicatorPreferences.observe(sharedPrefs) { snapshot ->
+                chipIndicatorMode = snapshot.indicatorMode
+                chipTextMode = snapshot.textMode
+                liveUpdateEnabled = snapshot.liveUpdateEnabled
             }
             onDispose {
                 sharedPrefs.unregisterOnSharedPreferenceChangeListener(listener)
@@ -150,6 +159,16 @@ class MainActivity : ComponentActivity() {
                         .padding(horizontal = 24.dp, vertical = 16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    LiveUpdateToggleCard(
+                        enabled = liveUpdateEnabled,
+                        onToggle = {
+                            liveUpdateEnabled = it
+                            ChipIndicatorPreferences.setLiveUpdateEnabled(sharedPrefs, it)
+                        }
+                    )
+
+                    Spacer(modifier = Modifier.height(24.dp))
+
                     ExpressiveChipBar(
                         tabs = listOf(SettingsTab.PERMISSIONS, SettingsTab.CUSTOMIZE),
                         selectedTab = selectedTab,
@@ -179,9 +198,14 @@ class MainActivity : ComponentActivity() {
                         SettingsTab.CUSTOMIZE -> {
                             CustomizationSection(
                                 selectedMode = chipIndicatorMode,
+                                selectedTextMode = chipTextMode,
                                 onModeSelected = { mode ->
                                     chipIndicatorMode = mode
-                                    ChipIndicatorPreferences.write(sharedPrefs, mode)
+                                    ChipIndicatorPreferences.writeIndicatorMode(sharedPrefs, mode)
+                                },
+                                onTextModeSelected = { mode ->
+                                    chipTextMode = mode
+                                    ChipIndicatorPreferences.writeTextMode(sharedPrefs, mode)
                                 }
                             )
                         }
@@ -189,6 +213,38 @@ class MainActivity : ComponentActivity() {
 
                     Spacer(modifier = Modifier.height(32.dp))
                 }
+            }
+        }
+    }
+
+    @Composable
+    private fun LiveUpdateToggleCard(
+        enabled: Boolean,
+        onToggle: (Boolean) -> Unit
+    ) {
+        ExpressiveSurface(modifier = Modifier.fillMaxWidth(), tonalElevation = 6.dp) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = getString(R.string.live_update_toggle_title),
+                        style = MaterialTheme.typography.titleLarge,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(
+                        text = getString(R.string.live_update_toggle_description),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                Spacer(modifier = Modifier.width(16.dp))
+                Switch(
+                    checked = enabled,
+                    onCheckedChange = onToggle
+                )
             }
         }
     }
@@ -255,7 +311,9 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun CustomizationSection(
         selectedMode: ChipIndicatorMode,
-        onModeSelected: (ChipIndicatorMode) -> Unit
+        selectedTextMode: ChipTextMode,
+        onModeSelected: (ChipIndicatorMode) -> Unit,
+        onTextModeSelected: (ChipTextMode) -> Unit
     ) {
         ExpressiveSurface(modifier = Modifier.fillMaxWidth(), tonalElevation = 4.dp) {
             Text(
@@ -284,6 +342,39 @@ class MainActivity : ComponentActivity() {
                     label = label,
                     selected = mode == selectedMode,
                     onClick = { onModeSelected(mode) }
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Text(
+                text = getString(R.string.chip_text_mode_title),
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.primary
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Text(
+                text = getString(R.string.chip_text_mode_description),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            val textOptions = listOf(
+                ChipTextMode.NONE to getString(R.string.chip_text_option_none),
+                ChipTextMode.APP_NAME_SHORT to getString(R.string.chip_text_option_app_name),
+                ChipTextMode.PLAYBACK_STATE to getString(R.string.chip_text_option_playback_state)
+            )
+
+            textOptions.forEach { (mode, label) ->
+                ElevatedListItem(
+                    label = label,
+                    selected = mode == selectedTextMode,
+                    onClick = { onTextModeSelected(mode) }
                 )
                 Spacer(modifier = Modifier.height(8.dp))
             }

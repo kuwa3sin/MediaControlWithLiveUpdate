@@ -18,6 +18,7 @@ import android.util.Log
 import com.kuwa3sin.mediactlwithliveupdate.R
 import com.kuwa3sin.mediactlwithliveupdate.config.ChipIndicatorMode
 import com.kuwa3sin.mediactlwithliveupdate.config.ChipIndicatorPreferences
+import com.kuwa3sin.mediactlwithliveupdate.config.ChipTextMode
 
 /**
  * Live Media Control - Core Service
@@ -65,6 +66,8 @@ class MediaMonitorService : NotificationListenerService() {
     private lateinit var preferences: SharedPreferences
     private var preferenceListener: SharedPreferences.OnSharedPreferenceChangeListener? = null
     private var mChipIndicatorMode: ChipIndicatorMode = ChipIndicatorMode.APP_ICON_ONLY
+    private var mChipTextMode: ChipTextMode = ChipTextMode.APP_NAME_SHORT
+    private var mLiveUpdateEnabled: Boolean = true
     private lateinit var mNotificationManager: NotificationManager
 
     override fun onCreate() {
@@ -72,9 +75,19 @@ class MediaMonitorService : NotificationListenerService() {
         Log.d(TAG, "MediaMonitorService created")
         mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         preferences = getSharedPreferences(ChipIndicatorPreferences.PREFS_NAME, MODE_PRIVATE)
-        mChipIndicatorMode = ChipIndicatorPreferences.read(preferences)
-        preferenceListener = ChipIndicatorPreferences.observe(preferences) { mode ->
-            mChipIndicatorMode = mode
+        mChipIndicatorMode = ChipIndicatorPreferences.readIndicatorMode(preferences)
+        mChipTextMode = ChipIndicatorPreferences.readTextMode(preferences)
+        mLiveUpdateEnabled = ChipIndicatorPreferences.isLiveUpdateEnabled(preferences)
+        preferenceListener = ChipIndicatorPreferences.observe(preferences) { snapshot ->
+            mChipIndicatorMode = snapshot.indicatorMode
+            mChipTextMode = snapshot.textMode
+            val wasEnabled = mLiveUpdateEnabled
+            mLiveUpdateEnabled = snapshot.liveUpdateEnabled
+            if (!mLiveUpdateEnabled) {
+                clearLiveUpdateNotification()
+            } else if (!wasEnabled && mLiveUpdateEnabled) {
+                updateNotification(mCurrentController?.metadata, mCurrentController?.playbackState)
+            }
         }
         createNotificationChannel()
     }
@@ -244,6 +257,11 @@ class MediaMonitorService : NotificationListenerService() {
      * 3. 同じIDで繰り返し呼び出すことで通知をアトミックに更新
      */
     private fun updateNotification(metadata: MediaMetadata?, state: PlaybackState?) {
+        if (!mLiveUpdateEnabled) {
+            clearLiveUpdateNotification()
+            return
+        }
+
         // 必須情報が欠落している場合は何もしない
         if (metadata == null || state == null) {
             Log.d(TAG, "Metadata or state is null, skipping notification update")
@@ -256,6 +274,15 @@ class MediaMonitorService : NotificationListenerService() {
     val displayArtist = "\uD83C\uDFA4 $artist"
     val art = metadata.getBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART)
     val sourceAppName = resolveSourceAppName()
+    val chipText = when (mChipTextMode) {
+        ChipTextMode.NONE -> null
+        ChipTextMode.APP_NAME_SHORT -> sourceAppName?.take(7)
+        ChipTextMode.PLAYBACK_STATE -> when (state.state) {
+            PlaybackState.STATE_PLAYING -> getString(R.string.chip_text_playing)
+            PlaybackState.STATE_PAUSED -> getString(R.string.chip_text_paused)
+            else -> null
+        }
+    }
 
         // 通知ビルダーを作成
         val builder = Notification.Builder(this, CHANNEL_ID)
@@ -300,7 +327,7 @@ class MediaMonitorService : NotificationListenerService() {
 
         sourceAppName?.let { builder.setSubText(it) }
 
-        setShortCriticalTextCompat(builder, null)
+    setShortCriticalTextCompat(builder, chipText)
 
         // アルバムアートが存在する場合は設定
         art?.let { artBitmap ->

@@ -24,6 +24,15 @@
     <string name="chip_indicator_mode_description">Choose which icon the status bar chip shows.</string>
     <string name="chip_indicator_option_app_icon">App notification icon</string>
     <string name="chip_indicator_option_playback_icon">Playback status icon</string>
+    <string name="live_update_toggle_title">Live Update notification</string>
+    <string name="live_update_toggle_description">Show or hide the promoted notification that powers the status bar chip.</string>
+    <string name="chip_text_mode_title">Chip text</string>
+    <string name="chip_text_mode_description">Choose what, if anything, appears as text inside the status bar chip.</string>
+    <string name="chip_text_option_none">No text</string>
+    <string name="chip_text_option_app_name">App name</string>
+    <string name="chip_text_option_playback_state">Playback state</string>
+    <string name="chip_text_playing">Playing</string>
+    <string name="chip_text_paused">Paused</string>
     <string name="notification_action_previous">⏮️ Previous</string>
     <string name="notification_action_play">▶️ Play</string>
     <string name="notification_action_pause">⏸️ Pause</string>
