@@ -41,6 +41,9 @@ Compose コンポーネントのスナップショットやユニットテスト
 ./gradlew testDebugUnitTest
 ```
 
+## apk
+https://github.com/kuwa3sin/MediaControlWithLiveUpdate/releases/tag/apk
+
 ## ライセンス
 
 このプロジェクトは [MIT License](LICENSE) の下で公開されています。
