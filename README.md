@@ -17,30 +17,6 @@ Jetpack Compose と Android 16 の Live Update API を活用したメディア�
 - Kotlin 1.9 以上
 - Gradle 8 以上（プロジェクト同梱の Gradle Wrapper を使用）
 
-## 開発環境
-
-上記の動作要件を満たした環境での開発を想定しています。
-
-## ビルド & 実行
-
-1. リポジトリをクローンし、Android Studio で開きます。
-2. `local.properties` に Android SDK のパスが設定されていることを確認します。
-3. 「Run > Run 'app'」 でエミュレータまたは実機にデプロイします。
-
-コマンドラインの場合は次のコマンドでデバッグビルドを生成できます。
-
-```bash
-./gradlew assembleDebug
-```
-
-## テスト
-
-Compose コンポーネントのスナップショットやユニットテストが追加されている場合は、以下で実行できます。
-
-```bash
-./gradlew testDebugUnitTest
-```
-
 ## apk
 https://github.com/kuwa3sin/MediaControlWithLiveUpdate/releases/tag/apk
 
