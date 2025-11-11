@@ -1,4 +1,4 @@
-package com.example.mediactlwithliveupdate
+package com.kuwa3sin.mediactlwithliveupdate
 
 import org.junit.Test
 

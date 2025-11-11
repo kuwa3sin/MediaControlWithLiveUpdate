@@ -1,4 +1,4 @@
-package com.example.mediactlwithliveupdate.ui.component
+package com.kuwa3sin.mediactlwithliveupdate.ui.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.example.mediactlwithliveupdate.R
+import com.kuwa3sin.mediactlwithliveupdate.R
 
 @Composable
 fun ElevatedListItem(

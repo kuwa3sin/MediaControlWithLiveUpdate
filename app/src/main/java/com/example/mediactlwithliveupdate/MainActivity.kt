@@ -1,4 +1,4 @@
-package com.example.mediactlwithliveupdate
+package com.kuwa3sin.mediactlwithliveupdate
 
 import android.Manifest
 import android.app.NotificationManager
@@ -28,12 +28,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
-import com.example.mediactlwithliveupdate.ui.theme.MediaCtlWithLiveUpdateTheme
-import com.example.mediactlwithliveupdate.config.ChipIndicatorMode
-import com.example.mediactlwithliveupdate.config.ChipIndicatorPreferences
-import com.example.mediactlwithliveupdate.ui.component.ExpressiveSurface
-import com.example.mediactlwithliveupdate.ui.component.ElevatedListItem
-import com.example.mediactlwithliveupdate.ui.component.ExpressiveChip
+import com.kuwa3sin.mediactlwithliveupdate.ui.theme.MediaCtlWithLiveUpdateTheme
+import com.kuwa3sin.mediactlwithliveupdate.config.ChipIndicatorMode
+import com.kuwa3sin.mediactlwithliveupdate.config.ChipIndicatorPreferences
+import com.kuwa3sin.mediactlwithliveupdate.ui.component.ExpressiveSurface
+import com.kuwa3sin.mediactlwithliveupdate.ui.component.ElevatedListItem
+import com.kuwa3sin.mediactlwithliveupdate.ui.component.ExpressiveChip
 import kotlinx.coroutines.isActive
 import android.content.Context
 

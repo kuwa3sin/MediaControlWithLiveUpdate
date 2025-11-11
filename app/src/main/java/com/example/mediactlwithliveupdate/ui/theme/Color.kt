@@ -1,4 +1,4 @@
-package com.example.mediactlwithliveupdate.ui.theme
+package com.kuwa3sin.mediactlwithliveupdate.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

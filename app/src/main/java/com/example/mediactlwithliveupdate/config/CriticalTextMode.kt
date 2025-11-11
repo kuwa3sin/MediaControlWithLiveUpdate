@@ -1,4 +1,4 @@
-package com.example.mediactlwithliveupdate.config
+package com.kuwa3sin.mediactlwithliveupdate.config
 
 import android.content.Context
 import android.content.SharedPreferences

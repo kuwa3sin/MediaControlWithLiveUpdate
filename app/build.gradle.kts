@@ -5,13 +5,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mediactlwithliveupdate"
+    namespace = "com.kuwa3sin.mediactlwithliveupdate"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.mediactlwithliveupdate"
+    applicationId = "com.kuwa3sin.mediactlwithliveupdate"
         minSdk = 36
         targetSdk = 36
         versionCode = 1

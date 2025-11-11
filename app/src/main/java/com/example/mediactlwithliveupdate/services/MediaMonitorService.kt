@@ -1,4 +1,4 @@
-package com.example.mediactlwithliveupdate.services
+package com.kuwa3sin.mediactlwithliveupdate.services
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -15,9 +15,9 @@ import android.media.session.PlaybackState
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 import android.util.Log
-import com.example.mediactlwithliveupdate.R
-import com.example.mediactlwithliveupdate.config.ChipIndicatorMode
-import com.example.mediactlwithliveupdate.config.ChipIndicatorPreferences
+import com.kuwa3sin.mediactlwithliveupdate.R
+import com.kuwa3sin.mediactlwithliveupdate.config.ChipIndicatorMode
+import com.kuwa3sin.mediactlwithliveupdate.config.ChipIndicatorPreferences
 
 /**
  * Live Media Control - Core Service
@@ -42,10 +42,10 @@ class MediaMonitorService : NotificationListenerService() {
         private const val CHANNEL_ID = "media_live_update_channel"
 
         // アクションボタン用のIntent Action定義
-        private const val ACTION_PLAY = "com.example.mediactlwithliveupdate.ACTION_PLAY"
-        private const val ACTION_PAUSE = "com.example.mediactlwithliveupdate.ACTION_PAUSE"
-        private const val ACTION_PREVIOUS = "com.example.mediactlwithliveupdate.ACTION_PREVIOUS"
-        private const val ACTION_SKIP = "com.example.mediactlwithliveupdate.ACTION_SKIP"
+    private const val ACTION_PLAY = "com.kuwa3sin.mediactlwithliveupdate.ACTION_PLAY"
+    private const val ACTION_PAUSE = "com.kuwa3sin.mediactlwithliveupdate.ACTION_PAUSE"
+    private const val ACTION_PREVIOUS = "com.kuwa3sin.mediactlwithliveupdate.ACTION_PREVIOUS"
+    private const val ACTION_SKIP = "com.kuwa3sin.mediactlwithliveupdate.ACTION_SKIP"
 
         private val MEDIA_STYLE_TEMPLATES = setOf(
             "android.app.Notification\$MediaStyle",

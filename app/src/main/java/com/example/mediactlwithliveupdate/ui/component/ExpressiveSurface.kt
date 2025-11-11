@@ -1,4 +1,4 @@
-package com.example.mediactlwithliveupdate.ui.component
+package com.kuwa3sin.mediactlwithliveupdate.ui.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding

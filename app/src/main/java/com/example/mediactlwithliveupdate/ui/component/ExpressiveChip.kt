@@ -1,4 +1,4 @@
-package com.example.mediactlwithliveupdate.ui.component
+package com.kuwa3sin.mediactlwithliveupdate.ui.component
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
