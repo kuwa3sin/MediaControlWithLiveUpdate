@@ -41,14 +41,6 @@ Compose コンポーネントのスナップショットやユニットテスト
 ./gradlew testDebugUnitTest
 ```
 
-## アセット
-
-- 機能紹介用のスクリーンショットや GIF は `docs/media/` 配下に配置しています。
-
-## リリース
-
-- GitHub Releases に APK (`MediaCtlWithLiveUpdate-v*.apk`) を配置し、最新版を配布します。
-
 ## ライセンス
 
 このプロジェクトは [MIT License](LICENSE) の下で公開されています。
