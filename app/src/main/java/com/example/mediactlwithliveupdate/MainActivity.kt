@@ -39,7 +39,7 @@ import kotlinx.coroutines.isActive
 import android.content.Context
 
 /**
- * Live Media Control - メインアクティビティ
+ * Live Glance - メインアクティビティ
  *
  * このアクティビティは、必要な権限のチェックとユーザーへの案内を提供する。
  *

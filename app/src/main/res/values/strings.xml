@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Live Media Control</string>
-    <string name="media_monitor_service_label">Live Media Control Monitor</string>
+    <string name="app_name">Live Glance</string>
+    <string name="media_monitor_service_label">Live Glance Monitor</string>
     <string name="notification_channel_name">Media Live Update</string>
     <string name="notification_channel_description">Displays currently playing media in status bar chip</string>
     <string name="permission_notification_listener_title">Notification access required</string>
@@ -12,9 +12,9 @@
     <string name="open_settings">⚙️ Open settings</string>
     <string name="request_permission">✅ Grant permission</string>
     <string name="permissions_granted">All required permissions granted</string>
-    <string name="service_running">Live Media Control is running</string>
+    <string name="service_running">Live Glance is running</string>
     <string name="status_playing">Playing</string>
-    <string name="settings_title">Live Media Control</string>
+    <string name="settings_title">Live Glance</string>
     <string name="settings_subtitle">Configure how the Live Update chip behaves</string>
     <string name="settings_description">Grant the required permissions and customise the status bar indicators for your now playing experience.</string>
     <string name="permission_section_title">Permissions</string>

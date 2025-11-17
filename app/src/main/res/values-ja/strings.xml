@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">ライブメディアコントロール</string>
-    <string name="media_monitor_service_label">Live Media Control Monitor</string>
+    <string name="app_name">ライブグランス</string>
+    <string name="media_monitor_service_label">Live Glance Monitor</string>
     <string name="notification_channel_name">Media Live Update</string>
     <string name="notification_channel_description">ステータスバーのチップに再生中のメディアを表示します</string>
     <string name="permission_notification_listener_title">通知アクセス権限が必要です</string>
@@ -12,9 +12,9 @@
     <string name="open_settings">⚙️ 設定を開く</string>
     <string name="request_permission">✅ 権限を許可する</string>
     <string name="permissions_granted">すべての権限が許可されています</string>
-    <string name="service_running">Live Media Controlが実行中です</string>
+    <string name="service_running">Live Glanceが実行中です</string>
     <string name="status_playing">再生中</string>
-    <string name="settings_title">Live Media Control</string>
+    <string name="settings_title">Live Glance</string>
     <string name="settings_subtitle">Live Updateチップの挙動を設定します</string>
     <string name="settings_description">必要な権限を付与し、再生中ステータスバー表示の見た目をカスタマイズしてください。</string>
     <string name="permission_section_title">権限</string>

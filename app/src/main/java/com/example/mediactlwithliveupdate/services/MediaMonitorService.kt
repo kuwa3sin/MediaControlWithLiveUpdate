@@ -21,7 +21,7 @@ import com.kuwa3sin.mediactlwithliveupdate.config.ChipIndicatorPreferences
 import com.kuwa3sin.mediactlwithliveupdate.config.ChipTextMode
 
 /**
- * Live Media Control - Core Service
+ * Live Glance - Core Service
  *
  * このサービスは、AOSP環境下でLive Update機能を活用したメディアコントローラーを実現する。
  *
@@ -29,11 +29,7 @@ import com.kuwa3sin.mediactlwithliveupdate.config.ChipTextMode
  * 1. NotificationListenerServiceとして他アプリのMediaStyle通知を傍受
  * 2. MediaSession.Tokenを抽出してMediaControllerを作成
  * 3. メタデータと再生状態の変更をリッスン
- * 4. StandardStyle通知をLive Updateとしてプロモート
- *
- * トレードオフ:
- * - AOSPはMediaStyleのLive Updateプロモーションを禁止しているため、StandardStyleを使用
- * - システム標準メディアコントロールとの二重表示は意図的な設計（ユーザー許容済み）
+ * 4. MediaStyle通知をLive Updateとしてプロモート
  */
 class MediaMonitorService : NotificationListenerService() {
 
@@ -43,10 +39,10 @@ class MediaMonitorService : NotificationListenerService() {
         private const val CHANNEL_ID = "media_live_update_channel"
 
         // アクションボタン用のIntent Action定義
-    private const val ACTION_PLAY = "com.kuwa3sin.mediactlwithliveupdate.ACTION_PLAY"
-    private const val ACTION_PAUSE = "com.kuwa3sin.mediactlwithliveupdate.ACTION_PAUSE"
-    private const val ACTION_PREVIOUS = "com.kuwa3sin.mediactlwithliveupdate.ACTION_PREVIOUS"
-    private const val ACTION_SKIP = "com.kuwa3sin.mediactlwithliveupdate.ACTION_SKIP"
+        const val ACTION_PLAY = "com.kuwa3sin.mediactlwithliveupdate.ACTION_PLAY"
+        const val ACTION_PAUSE = "com.kuwa3sin.mediactlwithliveupdate.ACTION_PAUSE"
+        const val ACTION_PREVIOUS = "com.kuwa3sin.mediactlwithliveupdate.ACTION_PREVIOUS"
+        const val ACTION_SKIP = "com.kuwa3sin.mediactlwithliveupdate.ACTION_SKIP"
 
         private val MEDIA_STYLE_TEMPLATES = setOf(
             "android.app.Notification\$MediaStyle",
@@ -284,16 +280,25 @@ class MediaMonitorService : NotificationListenerService() {
         }
     }
 
-        // 通知ビルダーを作成
+        val duration = metadata.getLong(MediaMetadata.METADATA_KEY_DURATION)
+        val currentPosition = state.position.coerceAtLeast(0L)
+
         val builder = Notification.Builder(this, CHANNEL_ID)
-            // Live Update昇格要件
             .setOngoing(true)
             .setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE)
-            // UIマッピング: StandardStyleを使用（MediaStyleは使用しない）
-            .setContentTitle(displayTitle)  // ステータスバーチップに表示される
+            .setContentTitle(displayTitle)
             .setContentText(displayArtist)
-            .setOnlyAlertOnce(true)  // 更新のたびに音が鳴らないようにする
+            .setOnlyAlertOnce(true)
             .setVisibility(Notification.VISIBILITY_PUBLIC)
+
+        if (duration > 0) {
+            val max = duration.coerceAtMost(Int.MAX_VALUE.toLong()).toInt()
+            val progress = currentPosition.coerceIn(0, duration)
+                .coerceAtMost(Int.MAX_VALUE.toLong()).toInt()
+            builder.setProgress(max, progress, false)
+        } else {
+            builder.setProgress(0, 0, true)
+        }
 
         val baseIconRes = R.drawable.ic_stat_music
         val playbackIconRes = when (state.state) {
