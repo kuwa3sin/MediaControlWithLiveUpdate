@@ -4,7 +4,7 @@ Jetpack Compose と Android 16 の Live Update API を活用したメディア�
 
 メディアの状態に合わせて更新されステータスバーに常駐する通知チップと、権限・カスタマイズ設定をタブで切り替えられる設定画面を備えています。
 
-> この README を含むドキュメントは、ほぼ全文を GitHub Copilot の支援を受けて記述しています。
+> この README を含むドキュメントは、GitHub Copilot の支援を受けて記述しています。
 
 ## 主な機能
 
